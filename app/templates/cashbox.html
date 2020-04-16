@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!--
+<form action="/sendcashbox" method="post">
+    <b>From XPOS:</b>
+    <p><textarea rows="10" cols="45" name="datain">{{ datain }}</textarea>
+
+    <textarea rows="10" cols="45" name="dataout"></textarea>
+    </p>
+    <p><input type="submit" value="Отправить"></p>
+
+
+  </form>
+
+  -->
+
+<form action="/sendcashbox" method="post">
+    <b>From XPOS:</b>
+    <textarea rows="10" cols="45" name="datain">{{ datain }}</textarea>
+    <textarea rows="10" cols="45" name="dataout"></textarea>
+    <input type="submit">
+</form>
+
+{% endblock %}

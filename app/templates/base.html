@@ -1,0 +1,19 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - xpos</title>
+        {% else %}
+        <title>microblog</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            XPOS:
+            <a href="/cashbox">CashBox</a>
+            &nbsp
+            <a href="/piechart">KKT</a>
+        </div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
