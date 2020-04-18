@@ -1,21 +1,16 @@
-from flask import render_template, session, request, Request
+from flask import render_template, request
 from app import app
 import time
 
-datain = ""
+datain = None
 dataout = None
+
 
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'username': 'Miguel'}
-    return render_template('index.html', title='Home', user=user)
-
-
-@app.route('/cashbox', methods=['GET'])
-def cashbox():
     global datain
-    return render_template('cashbox.html', datain=datain, title='cashbox')
+    return render_template('index.html', datain=datain, title='cashbox')
 
 
 @app.route('/longpolling', methods=['POST'])
@@ -24,7 +19,8 @@ def longpolling():
     global dataout
 
     datain = request.get_json()
-    while dataout == None: time.sleep(1)
+    while dataout is None:
+        time.sleep(0.1)
     datain = ""
     dataoutreal = dataout
     dataout = None
@@ -32,8 +28,20 @@ def longpolling():
     return dataoutreal
 
 
+@app.route('/check', methods=['GET'])
+def check():
+    global datain
+    while datain is None:
+        time.sleep(0.1)
+    senddata = datain
+    datain = None
+    print("datain " + str(senddata))
+    return senddata
+
+
 @app.route('/sendcashbox', methods=['POST'])
 def oauth():
     global dataout
-    dataout = (request.form['dataout'])
-    return render_template('index.html', title='Home')
+    dataout = request.get_data()
+    #return render_template('index.html', title='Home')
+    return ""
