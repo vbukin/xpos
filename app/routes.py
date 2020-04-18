@@ -43,5 +43,4 @@ def check():
 def oauth():
     global dataout
     dataout = request.get_data()
-    #return render_template('index.html', title='Home')
     return ""
