@@ -35,7 +35,6 @@ def check():
         time.sleep(0.1)
     senddata = datain
     datain = None
-    print("datain " + str(senddata))
     return senddata
 
 
